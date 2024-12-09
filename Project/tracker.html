@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gym Progress Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center;
+            background-color: palevioletred;
+        }
+        .calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            max-width: 600px;
+            margin: 20px auto;
+        }
+        .day {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+            background-color: #f9f9f9;
+            cursor: pointer;
+            position: relative;
+        }
+        .day:hover {
+            background-color: #eef;
+        }
+        .day.today {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+        }
+        .tooltip {
+            display: none;
+            position: absolute;
+            top: 110%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #333;
+            color: #fff;
+            padding: 5px;
+            border-radius: 5px;
+            font-size: 12px;
+            white-space: nowrap;
+            z-index: 1;
+        }
+        .day:hover .tooltip {
+            display: block;
+        }
+        .progress-input {
+            margin: 20px auto;
+            max-width: 600px;
+        }
+        input, button {
+            padding: 10px;
+            margin: 5px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Gym Progress Tracker</h1>
+    <div id="calendar" class="calendar"></div>
+    
+    <div class="progress-input">
+        <h2>Log Progress</h2>
+        <input type="date" id="dateInput" />
+        <input type="text" id="progressInput" placeholder="Enter progress (e.g., Weightlifting: 60kg)" />
+        <button onclick="logProgress()">Log Progress</button>
+    </div>
+
+    <script>
+        // Initialize variables
+        const calendar = document.getElementById('calendar');
+        const today = new Date();
+        const year = today.getFullYear();
+        const month = today.getMonth();
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        const progressData = {};
+
+        // Generate calendar
+        for (let day = 1; day <= daysInMonth; day++) {
+            const date = new Date(year, month, day);
+            const dayElement = document.createElement('div');
+            dayElement.className = 'day';
+            if (day === today.getDate()) dayElement.classList.add('today');
+            dayElement.dataset.date = date.toISOString().split('T')[0];
+            dayElement.innerHTML = `<span>${day}</span>
+                <div class="tooltip">No progress logged</div>`;
+            calendar.appendChild(dayElement);
+        }
+
+        // Log progress
+        function logProgress() {
+    const dateInput = document.getElementById('dateInput').value;
+    const progressInput = document.getElementById('progressInput').value;
+
+    if (!dateInput || !progressInput) {
+        alert('Please enter both date and progress.');
+        return;
+    }
+
+    // Save progress data
+    progressData[dateInput] = progressInput;
+
+    // Update calendar tooltip
+    const dayElement = document.querySelector(`.day[data-date="${dateInput}"]`);
+    if (dayElement) {
+        const tooltip = dayElement.querySelector('.tooltip');
+        tooltip.textContent = progressInput;
+        tooltip.style.display = 'block';
+    }
+
+    alert('Progress logged successfully!');
+}
+
+    </script>
+</body>
+</html>

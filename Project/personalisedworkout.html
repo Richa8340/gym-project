@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalized Workout Plans</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            color: black;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            color: #007BFF;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color:white;
+        }
+
+        .content {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .content img {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: black
+        }
+
+        .text {
+            max-width: 600px;
+        }
+
+        .text h2 {
+            font-size: 2rem;
+            color: #007BFF;
+            margin-bottom: 15px;
+        }
+
+        .text p {
+            font-size: 1rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .text ul {
+            list-style: disc;
+            padding-left: 20px;
+            color: white;
+        }
+
+        .text ul li {
+            margin-bottom: 10px;
+        }
+
+        .text button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .text button:hover {
+            background-color: #0056b3;
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .text {
+                text-align: center;
+            }
+
+            .text ul {
+                text-align: left;
+                margin: 0 auto;
+                display: inline-block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Personalized Workout Plans</h1>
+            <p>Your fitness, your way. Tailored exercises designed to meet your interests and goals.</p>
+        </div>
+
+        <div class="content">
+            <img src="assets/about.jpg" alt="Personalized Workout" />
+            <div class="text">
+                <h2>What’s Included in Your Personalized Plan?</h2>
+                <p>Our personalized workout plans are crafted to suit your unique preferences and fitness needs. Here's what you get:</p>
+                <ul>
+                    <li>Exercises aligned with your fitness goals, whether it’s weight loss, muscle building, or flexibility.</li>
+                    <li>Custom routines based on your schedule and activity level.</li>
+                    <li>Focus on areas you love or want to improve, such as core strength, endurance, or relaxation.</li>
+                    <li>Professional guidance from expert trainers.</li>
+                </ul>
+                <button>Get Started Now</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

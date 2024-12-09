@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #000; /* Black background */
+            color: #fff; /* White text */
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #FFD700; /* Yellow */
+            padding: 15px 20px;
+            color: black;
+        }
+
+        .logo span {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .navbar {
+            display: flex;
+            list-style: none;
+        }
+
+        .navbar li {
+            margin: 0 15px;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: black; /* Black text for header links */
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #FFD700; /* Yellow hover effect */
+        }
+
+        /* Locations Section */
+        .locations {
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .heading {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #FFD700; /* Yellow */
+        }
+
+        .location-content .btn {
+            padding: 15px 20px;
+            background: #FFD700; /* Yellow */
+            color: black;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .location-content .btn:hover {
+            background: #FFC300; /* Slightly darker yellow on hover */
+        }
+
+        .city-list, .gym-list {
+            margin: 20px auto;
+            padding: 0;
+            list-style: none;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        .city-list li {
+            background: #222; /* Dark gray for items */
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            color: white; /* White text for items */
+            box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1); /* Subtle white glow */
+            transition: transform 0.2s, background-color 0.3s;
+        }
+
+        .city-list li:hover {
+            transform: scale(1.05);
+            background-color: #FFD700; /* Yellow hover */
+            color: black; /* Black text when hovered */
+        }
+
+        .gym-item {
+            display: flex;
+            align-items: center;
+            background: #222; /* Dark gray background */
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1); /* Subtle white glow */
+        }
+
+        .gym-item img {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            object-fit: cover;
+            margin-right: 15px;
+        }
+
+        .gym-details {
+            flex: 1;
+        }
+
+        .gym-name {
+            font-size: 1.2rem;
+            margin: 0 0 5px;
+            color: #FFD700; /* Yellow */
+        }
+
+        .gym-rating {
+            font-size: 1rem;
+            color: #FFD700; /* Yellow for stars */
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: #FFD700; /* Yellow */
+            color: black; /* Black text in footer */
+            position: relative;
+        }
+
+        .footer .social a {
+            margin: 0 10px;
+            color: black; /* Black for social icons */
+            font-size: 1.5rem;
+            text-decoration: none;
+        }
+
+        .footer .social a:hover {
+            color: #FFC300; /* Slightly darker yellow */
+        }
+
+        .copyright {
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+    </style>
+    <title>Gym Locations - FlexiGYM</title>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <a href="#" class="logo"><span>FlexiGYM</span></a>
+        <div class="bx bx-menu" id="menu-icon"></div>
+        <ul class="navbar">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="service.html">Services</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="#new.html">Location Access</a></li>
+            <li><a href="reveiw.html">Review</a></li>
+        </ul>
+    </header>
+
+    <!-- Gym Locations Section -->
+    <section class="locations" id="locations">
+        <h2 class="heading">Find <span>Your Gym</span></h2>
+        <div class="location-content">
+            <button id="location-btn" class="btn">Show Locations</button>
+            <ul id="city-list" class="city-list"></ul>
+            <div id="gym-list" class="gym-list"></div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="social">
+            <a href="#"><i class='bx bxl-instagram-alt'></i></a>
+            <a href="#"><i class='bx bxl-facebook-square'></i></a>
+            <a href="#"><i class='bx bxl-linkedin-square'></i></a>
+        </div>
+        <p class="copyright">
+            &copy; FlexiGYM 2024 - All Rights Reserved
+        </p>
+    </footer>
+
+    <script>
+        const cities = {
+            "Durg": [
+                { name: "Gold's Gym", rating: 5, img: "https://www.shutterstock.com/image-generated/create-realistic-image-home-gym-designed-2498495421" },
+                { name: "FlexiFit", rating: 4, img: "https://via.placeholder.com/80" }
+            ],
+            "Bhilai": [
+                { name: "FitHub", rating: 4, img: "https://via.placeholder.com/80" },
+                { name: "Iron Paradise", rating: 5, img: "https://via.placeholder.com/80" }
+            ],
+            "Raipur": [
+                { name: "J7 Fitness", rating: 3},
+                { name: "power zone", rating: 4}
+            ],
+            "Kawardha" : [
+            { name: "The Lion gym", rating: 5},
+            { name: "Avinsh Gym", rating: 3}
+            ],
+            "Bilaspur" : [
+            { name: "Fitness hub", rating: 5}
+            ],
+            "Korba" : [
+            { name: "Your Gym", rating: 5},
+            { name: "P1 Fitness gym", rating: 5}
+            ],
+            "Raigrh" : [
+            { name: "Gear Up Gym", rating: 5}
+            ]
+            // Add similar entries for other cities...
+        };
+
+        document.getElementById('location-btn').addEventListener('click', () => {
+            const cityList = document.getElementById('city-list');
+            const gymList = document.getElementById('gym-list');
+            cityList.innerHTML = ''; // Clear existing city list
+            gymList.innerHTML = ''; // Clear existing gym list
+
+            for (let city in cities) {
+                const cityItem = document.createElement('li');
+                cityItem.textContent = city;
+                cityItem.addEventListener('click', () => {
+                    showGyms(city);
+                    cityList.style.display = 'none'; // Hide city list after selection
+                });
+                cityList.appendChild(cityItem);
+            }
+        });
+
+        function showGyms(city) {
+            const gymList = document.getElementById('gym-list');
+            gymList.innerHTML = ''; // Clear existing gym list
+
+            cities[city].forEach(gym => {
+                const gymItem = document.createElement('div');
+                gymItem.classList.add('gym-item');
+
+                gymItem.innerHTML = `
+                    <img src="${gym.img}" alt="${gym.name}">
+                    <div class="gym-details">
+                        <h3 class="gym-name">${gym.name}</h3>
+                        <div class="gym-rating">${'★'.repeat(gym.rating)}${'☆'.repeat(5 - gym.rating)}</div>
+                    </div>
+                `;
+
+                gymList.appendChild(gymItem);
+            });
+        }
+    </script>
+</body>
+</html>

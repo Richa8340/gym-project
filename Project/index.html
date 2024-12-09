@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+    <title>Flexigym</title>
+    
+    
+
+</head>
+<body>
+    <header>
+        <a href="#" class="logo"> <span>FlexiGYM</span></a>
+
+        <div class="bx bx-menu" id="menu-icon"></div>
+
+        <ul class="navbar">
+            <li><a href="#home">Home</a></li>
+            <li><a href="service.html">Services</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="new.html">Location Access</a></li>
+            <li><a href="reveiw.html">Review</a></li>
+        </ul>
+
+        <div class="top-btn">
+            <a href="form.html" class="nav-btn">Join Us</a>
+        </div>
+    </header>
+
+    <!-- Home Section -->
+
+    <section class="home" id="home">
+        <div class="home-content" >
+            <h3>Build Your</h3>
+            
+            <p><span>Anytime anywhere</span></p>
+            <h3><span class="multiple-text">Bodybuilding</span></h3>
+            <p>" Flexigym – where flexibility meets fitness! Tailored workouts, advanced tech, and eco-friendly facilities ensure a personalized fitness journey. Join today and redefine your gym experience, anytime, anywhere!"</p>
+
+            <a href="form.html" class="btn">Join Us</a>
+        </div>
+
+        <div class="home-img" >
+            <img src="assets/heroImage.png" alt="Home Image">
+        </div>
+    </section>
+
+    <!-- Chatbot -->
+
+    <div class="chatbot-icon" onclick="toggleChatbot()">
+        <i class='bx bxs-message-dots' style='font-size: 30px; color: white;'></i>
+    </div>
+
+    <div class="chatbot-window" id="chatbot">
+        <div class="chatbot-header">
+            Chatbot
+            <button class="close-btn" onclick="toggleChatbot()">&times;</button>
+        </div>
+        <div class="chatbot-messages" id="chatBox">
+            <div class="message bot-message">Hi! How can I assist you today?</div>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" id="userInput" placeholder="Type your message...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+
+    <footer class="footer">
+        <div class="social">
+            <a href="#"><i class='bx bxl-instagram-alt'></i></a>
+            <a href="#"><i class='bx bxl-facebook-square'></i></a>
+            <a href="#"><i class='bx bxl-linkedin-square'></i></a>
+        </div>
+
+        <p class="copyright">
+            &copy; Royal Fitness 2024 - All Rights Reserved
+        </p>
+    </footer>
+
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            offset: 300,
+            duration: 1400,
+        });
+    </script>
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script src="script.js"></script>
+
+    <script>
+
+
+
+
+        // Toggle chatbot visibility
+        function toggleChatbot() {
+            const chatbot = document.getElementById('chatbot');
+            if (chatbot.style.display === 'block') {
+                chatbot.style.display = 'none';
+            } else {
+                chatbot.style.display = 'block';
+            }
+        }
+
+        // Predefined responses
+        const botResponses = {
+            "hi": "Hello! How can I help you today?",
+            "hello": "Hi there! How can I assist you?",
+            "membership": "We offer Monthly, Quarterly, and Yearly memberships. Would you like more details?",
+            "classes": "We offer Yoga, Pilates, Cardio, and Weight Training classes. Which one are you interested in?",
+            "facilities": "Our gym has a full range of equipment, a swimming pool, sauna, and more. Want to know more about any specific facility?",
+            "location": "We are located at 123 Fitness Street, Gym City. Would you like directions?",
+            "hours": "Our gym is open from 6 AM to 10 PM every day.",
+            "thank you": "You're welcome! Let me know if you need further assistance.",
+            "bye": "Goodbye! Have a great day!"
+        };
+
+        // Send message function
+        function sendMessage() {
+            const userInput = document.getElementById("userInput").value.trim().toLowerCase();
+            if (userInput !== "") {
+                displayMessage(userInput, "user");
+                document.getElementById("userInput").value = ""; // Clear the input field
+
+                // Get bot's response
+                const botResponse = botResponses[userInput] || "I'm sorry, I didn't understand that. Can you ask something else?";
+
+                // Simulate a delay before showing bot's message
+                setTimeout(() => {
+                    displayMessage(botResponse, "bot");
+                }, 1000);
+            }
+        }
+
+        // Display message in the chatbox
+        // Display message in the chatbox
+        function displayMessage(message, sender) {
+            const chatBox = document.getElementById("chatBox");
+            const messageDiv = document.createElement("div");
+            messageDiv.classList.add("message");
+            messageDiv.classList.add(sender === "user" ? "user-message" : "bot-message");
+            messageDiv.textContent = message;
+            chatBox.appendChild(messageDiv);
+            chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll to the bottom
+        }
+
+        // Allow pressing Enter to send message
+        document.getElementById("userInput").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                sendMessage();
+            }
+        });
+    </script>
+
+</body>
+</html>

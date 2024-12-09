@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gym Nutrition Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center;
+        
+            
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        .form-container {
+            margin: 20px auto;
+            max-width: 600px;
+        }
+        input, button {
+            padding: 10px;
+            margin: 5px;
+        }
+        button {
+            background-color: #007bff;
+            color: rgb(255, 255, 255);
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .totals {
+            margin: 20px auto;
+            max-width: 600px;
+            text-align: left;
+        }
+        .totals div {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Nutrition Diet Tracker</h1>
+    <div class="form-container">
+        <h2>Log Your Meal</h2>
+        <input type="date" id="dateInput" />
+        <input type="text" id="mealInput" placeholder="Meal Name (e.g., Breakfast)" />
+        <input type="number" id="caloriesInput" placeholder="Calories" />
+        <input type="number" id="proteinInput" placeholder="Protein (g)" />
+        <input type="number" id="carbsInput" placeholder="Carbs (g)" />
+        <input type="number" id="fatsInput" placeholder="Fats (g)" />
+        <button onclick="logMeal()">Log Meal</button>
+    </div>
+
+    <h2>Daily Nutrition Logs</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Meal</th>
+                <th>Calories</th>
+                <th>Protein (g)</th>
+                <th>Carbs (g)</th>
+                <th>Fats (g)</th>
+            </tr>
+        </thead>
+        <tbody id="nutritionTable">
+            <!-- Dynamic rows will be added here -->
+        </tbody>
+    </table>
+
+    <div class="totals">
+        <h2>Daily Totals</h2>
+        <div><strong>Total Calories:</strong> <span id="totalCalories">0</span></div>
+        <div><strong>Total Protein:</strong> <span id="totalProtein">0</span> g</div>
+        <div><strong>Total Carbs:</strong> <span id="totalCarbs">0</span> g</div>
+        <div><strong>Total Fats:</strong> <span id="totalFats">0</span> g</div>
+    </div>
+
+    <script>
+        const nutritionTable = document.getElementById('nutritionTable');
+        const totalCalories = document.getElementById('totalCalories');
+        const totalProtein = document.getElementById('totalProtein');
+        const totalCarbs = document.getElementById('totalCarbs');
+        const totalFats = document.getElementById('totalFats');
+
+        let dailyTotals = { calories: 0, protein: 0, carbs: 0, fats: 0 };
+
+        function logMeal() {
+            const date = document.getElementById('dateInput').value;
+            const meal = document.getElementById('mealInput').value;
+            const calories = parseInt(document.getElementById('caloriesInput').value) || 0;
+            const protein = parseInt(document.getElementById('proteinInput').value) || 0;
+            const carbs = parseInt(document.getElementById('carbsInput').value) || 0;
+            const fats = parseInt(document.getElementById('fatsInput').value) || 0;
+
+            if (!date || !meal || !calories) {
+                alert('Please fill in all required fields (date, meal name, calories).');
+                return;
+            }
+
+            // Add row to the table
+            const row = `<tr>
+                <td>${date}</td>
+                <td>${meal}</td>
+                <td>${calories}</td>
+                <td>${protein}</td>
+                <td>${carbs}</td>
+                <td>${fats}</td>
+            </tr>`;
+            nutritionTable.innerHTML += row;
+
+            // Update totals
+            dailyTotals.calories += calories;
+            dailyTotals.protein += protein;
+            dailyTotals.carbs += carbs;
+            dailyTotals.fats += fats;
+
+            totalCalories.textContent = dailyTotals.calories;
+            totalProtein.textContent = dailyTotals.protein;
+            totalCarbs.textContent = dailyTotals.carbs;
+            totalFats.textContent = dailyTotals.fats;
+
+            // Clear inputs
+            document.getElementById('dateInput').value = '';
+            document.getElementById('mealInput').value = '';
+            document.getElementById('caloriesInput').value = '';
+            document.getElementById('proteinInput').value = '';
+            document.getElementById('carbsInput').value = '';
+            document.getElementById('fatsInput').value = '';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gym Registration Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+</head>
+<body>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            color: black;
+        }
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid black;
+            border-radius: 10px;
+            background-color: #f1b708;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: black;
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid black;
+            border-radius: 5px;
+        }
+        .form-group button {
+            padding: 10px 20px;
+            background-color: black;
+            color:#f1b708 ;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .form-group button:hover {
+            background-color: rgb(111, 23, 23);
+        }
+        .form-group i {
+            margin-right: 8px;
+            color: black;
+        }
+        .links {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .links p {
+            margin-bottom: 10px;
+            color: black;
+            font-size: 15px;
+        }
+        .links button {
+            padding: 8px 15px;
+            background-color: black;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .links button:hover {
+            background-color: #333;
+        }
+    </style>
+
+    <div class="form-container">
+        <h1>Gym Registration Form</h1>
+        <form method="POST" action= "">
+            <!-- Personal Details -->
+            <div class="form-group">
+                <label for="full-name"><i class="fas fa-user"></i> Full Name</label>
+                <input type="text" id="full-name" name="full-name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email"><i class="fas fa-envelope"></i> Email Address</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone"><i class="fas fa-phone"></i> Mobile Number</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+
+            <div class="form-group">
+                <label for="address"><i class="fas fa-home"></i> Residential Address</label>
+                <textarea id="address" name="address" rows="3" required></textarea>
+            </div>
+
+            <!-- Health & Fitness Details -->
+            <div class="form-group">
+                <label for="dob"><i class="fas fa-calendar-alt"></i> Date of Birth</label>
+                <input type="date" id="dob" name="dob" required>
+            </div>
+
+            <div class="form-group">
+                <label for="gender"><i class="fas fa-venus-mars"></i> Gender</label>
+                <select id="gender" name="gender" required>
+                    <option value="">Select</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <!-- Membership Plans -->
+            <div class="form-group">
+                <label for="membership-plan"><i class="fas fa-id-card"></i> Preferred Membership Plan</label>
+                <select id="membership-plan" name="membership-plan" required>
+                    <option value="">Select</option>
+                    <option value="monthly">Monthly</option>
+                    <option value="quarterly">Quarterly</option>
+                    <option value="yearly">Yearly</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="create-password"><i class="fas fa-plus-circle"></i> Password</label>
+                <input type="password" id="create-password" name="password" required>
+            </div>
+
+            <!-- Consent & Submission -->
+            <div class="form-group">
+                <input type="checkbox" id="consent" name="consent" required>
+                <label for="consent">I agree to the terms and conditions.</label>
+            </div>
+
+            <div class="form-group">
+                <button type="submit"><i class="fas fa-paper-plane"></i> Submit</button>
+            </div>
+        </form>
+
+        <p class="or">-----------or----------</p>
+        <div class="icons">
+            <i class="fab fa-google"></i>
+            <i class="fab fa-facebook"></i>
+        </div>
+
+        <a href="login.html">
+            <div class="links">
+                <p>Already registered?</p>
+                <button id="signinButton">Login</button>
+            </div>
+        </a>
+    </div>
+
+    
+</body>
+</html>

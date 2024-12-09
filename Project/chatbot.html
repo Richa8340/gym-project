@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gym Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        .chat-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            background-color: #fff;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+        .chat-header {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        .chat-box {
+            padding: 10px;
+            height: 300px;
+            overflow-y: auto;
+            background-color: #f9f9f9;
+            flex-grow: 1;
+        }
+        .chat-input-container {
+            display: flex;
+            border-top: 1px solid #ddd;
+        }
+        .chat-input {
+            width: 80%;
+            padding: 10px;
+            border: none;
+            border-bottom-left-radius: 10px;
+            outline: none;
+        }
+        .send-btn {
+            width: 20%;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-bottom-right-radius: 10px;
+            cursor: pointer;
+        }
+        .send-btn:hover {
+            background-color: #0056b3;
+        }
+        .message {
+            padding: 8px;
+            margin: 5px;
+            border-radius: 10px;
+        }
+        .user-message {
+            background-color: #cce5ff;
+            align-self: flex-end;
+        }
+        .bot-message {
+            background-color: #e2e3e5;
+            align-self: flex-start;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="chat-container">
+        <div class="chat-header">
+            <strong>Gym Bot</strong>
+        </div>
+        <div class="chat-box" id="chatBox">
+            <!-- Chat messages will appear here -->
+        </div>
+        <div class="chat-input-container">
+            <input type="text" id="userInput" class="chat-input" placeholder="Ask me anything...">
+            <button class="send-btn" onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        // Predefined responses
+        const botResponses = {
+            "hi": "Hello! How can I help you today?",
+            "hello": "Hi there! How can I assist you?",
+            "membership": "We offer Monthly, Quarterly, and Yearly memberships. Would you like more details?",
+            "classes": "We offer Yoga, Pilates, Cardio, and Weight Training classes. Which one are you interested in?",
+            "facilities": "Our gym has a full range of equipment, a swimming pool, sauna, and more. Want to know more about any specific facility?",
+            "location": "We are located at 123 Fitness Street, Gym City. Would you like directions?",
+            "hours": "Our gym is open from 6 AM to 10 PM every day.",
+            "thank you": "You're welcome! Let me know if you need further assistance.",
+            "bye": "Goodbye! Have a great day!"
+        };
+
+        // Send message function
+        function sendMessage() {
+            const userInput = document.getElementById("userInput").value.trim().toLowerCase();
+            if (userInput !== "") {
+                displayMessage(userInput, "user");
+                document.getElementById("userInput").value = ""; // Clear the input field
+
+                // Get bot's response
+                const botResponse = botResponses[userInput] || "I'm sorry, I didn't understand that. Can you ask something else?";
+
+                // Simulate a delay before showing bot's message
+                setTimeout(() => {
+                    displayMessage(botResponse, "bot");
+                }, 1000);
+            }
+        }
+
+        // Display message in the chatbox
+        function displayMessage(message, sender) {
+            const chatBox = document.getElementById("chatBox");
+            const messageDiv = document.createElement("div");
+            messageDiv.classList.add("message");
+            messageDiv.classList.add(sender === "user" ? "user-message" : "bot-message");
+            messageDiv.textContent = message;
+            chatBox.appendChild(messageDiv);
+            chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll to the bottom
+        }
+
+        // Allow pressing Enter to send message
+        document.getElementById("userInput").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                sendMessage();
+            }
+        });
+    </script>
+
+</body>
+</html>
